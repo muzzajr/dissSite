@@ -1,0 +1,228 @@
+html
+{
+	background-image: url("kids_wallpaper.png");
+	
+	background-repeat: no-repeat;
+	background-size:100% auto;
+	height: 100%;
+	width: auto;
+	overflow: hidden;
+}
+/* Nav Bar Style */
+nav
+{
+	text-align: center;
+}
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 0.9vw 1.04vw;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+/* login and sign up style */
+#main2
+{
+	padding-top: 10vw;
+	text-align: center;
+}
+#main3
+{
+	padding-top: 10vw;
+	text-align: center;
+}
+input
+{
+	text-align: center;
+	width: 30% !important;
+	height: 60%;
+	padding: 0.5vw;
+	margin:0.5vw;
+	-webkit-border-radius: 1vw;
+	-moz-border-radius: 1vw;
+	border-radius: 1vw;
+	border: none;
+	-moz-box-sizing:content-box;
+	-webkit-box-sizing:content-box; 
+	box-sizing:border-box;
+}
+.finshBtn{
+	text-align: center;
+	width: 27% !important;
+	height: 30%;
+	font-size: 4em;
+	-webkit-border-radius: 1vw;
+	-moz-border-radius: 1vw;
+	border-radius: 1vw;
+	border: none;
+	-moz-box-sizing:content-box;
+	-webkit-box-sizing:content-box; 
+	box-sizing:border-box;
+	background-color: 	#ccccff;
+}
+.finshBtn:hover{
+	border: solid 1vw black;
+}
+#icons{
+	text-align: center;
+	width: 150vw;
+}
+.storyChoice{
+	width: 20%;
+	padding:0;
+	float:left;
+	padding-top: 5%;
+	padding-bottom: 3%;
+	background-color: 	#ccccff;
+	margin:6.5%;
+	margin-top: 4%;
+	-webkit-border-radius: 1vw;
+	-moz-border-radius: 1vw;
+	border-radius: 1vw;
+	border: none;
+}
+a .storyChoice:hover{
+	border: solid 0.5vw black;
+}
+.title{
+	font-family: Arial, Helvetica, sans-serif;
+}
+.storyChoice img{
+	width: 35%;
+	height: 30%;
+}
+
+
+/* for mobiles */
+@media screen and (orientation:potrait) {
+    html 
+	{
+        background-image: url("kids_mob_wallpaper.png");
+		background-size: cover;
+		height: 100%;
+		width: auto;
+		overflow: scroll;
+    }
+	h1{ font-size: 8vw;}
+	h3{ font-size: 4vw;}
+	nav
+	{
+		text-align: center;
+	}
+	body {
+	  margin: 0;
+	  font-family: Arial, Helvetica, sans-serif;
+	}
+
+	.topnav {
+	  overflow: hidden;
+	  background-color: #333;
+	  width:100%;
+	  height:auto;
+	}
+	#btns
+	{
+		padding-top: 5vw;
+	    padding-bottom: 5vw;
+		margin-right: 1vw;
+		font-size:8vw;
+	}
+	.topnav, a {
+	  float: left;
+	  color: #f2f2f2;
+	  text-align: center;
+	  
+	  
+	}
+
+	.topnav a:hover {
+	  background-color: #ddd;
+	  color: black;
+	  
+	}
+
+	.topnav a.active {
+	  background-color: #4CAF50;
+	  color: white;
+	  
+	}
+	/* login and sign up style */
+	#main2
+	{
+		padding-top: 40vw;
+		width: 100%;
+		text-align: center;
+	}
+	#main3
+	{
+		padding-top: 40vw;
+		width: 100%;
+		text-align: center;
+	}
+	#login
+	{
+		padding: 0;
+		width: 80vw;
+		background-color: #a3a3a3;
+		display: inline-block;
+		-webkit-border-radius: 6vw;
+		-moz-border-radius: 6vw;
+		border-radius: 6vw;
+		
+	}
+	input
+	{
+		width: 30% !important;
+		font-size: 4vw;
+		padding: 4vw;
+		margin: 4vw;
+		-webkit-border-radius: 6vw;
+		-moz-border-radius: 6vw;
+		border-radius: 6vw;
+		border: none;
+		-moz-box-sizing:content-box;
+		-webkit-box-sizing:content-box; 
+		box-sizing:border-box;
+
+	}
+	#cancelBtn
+	{
+		text-align: center;
+		padding: 4vw;
+		margin: 4vw;
+		-webkit-border-radius: 6vw;
+		-moz-border-radius: 6vw;
+		border-radius: 6vw;
+		border: none;
+		-moz-box-sizing:content-box;
+		-webkit-box-sizing:content-box; 
+		box-sizing:border-box;
+	}
+	#submitBtn
+	{
+		background-image: linear-gradient(to right, #ff1ce4, #00d4ff);
+		color: white;
+	}
+}

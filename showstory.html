@@ -1,0 +1,29 @@
+<html>
+<head>
+    <link rel="stylesheet" href="drawingStyle.css">
+    <script src="java.js"></script>
+</head>
+<script>
+    function loadImage() {
+        var dataURL = localStorage.getItem("heroPicture");
+        var img = document.getElementById("canvas1");
+        img.src = dataURL;
+        dataURL = localStorage.getItem("villian");
+        img = document.getElementById("canvas2");
+        img.src = dataURL;
+        dataURL = localStorage.getItem("scene1");
+        img = document.getElementById("canvas3");
+        img.src = dataURL;
+        dataURL = localStorage.getItem("scene2");
+        img = document.getElementById("canvas4");
+        img.src = dataURL;
+    }
+</script>
+<body  onload="loadImage()">
+    <img id="canvas1" src="" width="400" height="300" style="position:absolute;top:3%;left:15%;border:2px solid;background:white;touch-action:none;">
+    <img id="canvas2" src="" width="400" height="300" style="position:absolute;top:3%;left:60%;border:2px solid;background:white;touch-action:none;">
+    <img id="canvas3" src="" width="400" height="300" style="position:absolute;top:53%;left:15%;border:2px solid;background:white;touch-action:none;">
+    <img id="canvas4" src="" width="400" height="300" style="position:absolute;top:53%;left:60%;border:2px solid;background:white;touch-action:none;">
+</body>
+
+</html>

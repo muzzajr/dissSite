@@ -1,0 +1,228 @@
+<html id="doc">
+        <head>
+          <link rel="stylesheet" href="drawingStyle.css">
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+          <script src="java.js" type="text/javascript"></script>
+        </head>
+        <body onload="init()">
+            <nav>
+                <div class="topnav">
+                    <a id="btns" href="logout.php">Go Home</a>
+                    <a id="btns" >Please Draw Where They Met!</a>
+                </div>
+            </nav>
+            <div>
+                
+            </div>
+            <canvas id="can" name="can" width="800%" height="600%" style="border-radius:2%;position:absolute;top:13%;left:2%;border:2px solid;background:white;touch-action:none;"></canvas>
+                <div style="position:absolute;top:12%;left:70%;">Choose Color</div>
+                <div style="border-radius:25%;position:absolute;top:15%;left:70%;width:3vw;height:3vw;background:green;" id="green" onclick="color(this)"></div>
+                <div style="border-radius:25%;position:absolute;top:15%;left:74%;width:3vw;height:3vw;background:blue;" id="blue" onclick="color(this)"></div>
+                <div style="border-radius:25%;position:absolute;top:15%;left:78%;width:3vw;height:3vw;background:red;" id="red" onclick="color(this)"></div>
+                <div style="border-radius:25%;position:absolute;top:22%;left:70%;width:3vw;height:3vw;background:yellow;" id="yellow" onclick="color(this)"></div>
+                <div style="border-radius:25%;position:absolute;top:22%;left:74%;width:3vw;height:3vw;background:orange;" id="orange" onclick="color(this)"></div>
+                <div style="border-radius:25%;position:absolute;top:22%;left:78%;width:3vw;height:3vw;background:black;" id="black" onclick="color(this)"></div>
+                <div style="border-radius:25%;position:absolute;top:30%;left:70%;">Eraser</div>
+                <div style="border-radius:25%;position:absolute;top:33%;left:70%;width:3vw;height:3vw;background:white;border:2px solid;" id="white" onclick="color(this)"></div>
+            
+            <input type="button" value="save" name="image" id="btn" onclick="saveViaAJAX()" size="30" style="position:absolute;top:55%;left:65%;width:10%;">
+            
+            <input type="button" value="clear" id="clr" size="23"  style="position:absolute;top:55%;left:76%;width:10%;">
+    
+            <form  name="myform" action="wedding.html">
+                <input type="submit" value="Next" id="clr" size="23" style="position:absolute;top:70%;left:76%;width:10%;">
+            </form>
+    
+        </body>
+        <script>
+            
+            function saveViaAJAX(){
+                    
+            var canvas = document.getElementById("can");
+            localStorage.setItem("meeting", canvas.toDataURL());
+    
+            }
+    
+            document.getElementById("clr").addEventListener("click", function() {
+            var m = confirm("Want to clear");
+            if (m) {
+                ctx.clearRect(0, 0, w, h);
+                document.getElementById("canvasimg").style.display = "none";
+            }
+            });
+    
+            var canvas, ctx, flag = false,
+            prevX = 0,
+            currX = 0,
+            prevY = 0,
+            currY = 0,
+            dot_flag = false;
+    
+            var x = "black",
+            y = 10;
+    
+            function init() {
+            canvas = document.getElementById('can');
+            ctx = canvas.getContext("2d");
+            w = canvas.width;
+            h = canvas.height;
+    
+            canvas.addEventListener("mousemove", function (e) {
+                findxy('move', e)
+            }, false);
+            canvas.addEventListener("mousedown", function (e) {
+                findxy('down', e)
+            }, false);
+            canvas.addEventListener("mouseup", function (e) {
+                findxy('up', e)
+            }, false);
+            canvas.addEventListener("mouseout", function (e) {
+                findxy('out', e)
+            }, false);
+            canvas.addEventListener("touchstart", function (e) {
+            mousePos = getTouchPos(canvas, e);
+            var touch = e.touches[0];
+            var mouseEvent = new MouseEvent("mousedown", {
+            clientX: touch.clientX,
+            clientY: touch.clientY
+            });
+            canvas.dispatchEvent(mouseEvent);
+            }, false);
+            canvas.addEventListener("touchend", function (e) {
+            var mouseEvent = new MouseEvent("mouseup", {});
+            canvas.dispatchEvent(mouseEvent);
+            }, false);
+            canvas.addEventListener("touchmove", function (e) {
+            var touch = e.touches[0];
+            var mouseEvent = new MouseEvent("mousemove", {
+            clientX: touch.clientX,
+            clientY: touch.clientY
+            });
+            canvas.dispatchEvent(mouseEvent);
+            }, false);
+            // Prevent scrolling when touching the canvas
+            document.body.addEventListener("touchstart", function (e) {
+            if (e.target == canvas) {
+            e.preventDefault();
+            }
+            }, false);
+            document.body.addEventListener("touchend", function (e) {
+            if (e.target == canvas) {
+            e.preventDefault();
+            }
+            }, false);
+            document.body.addEventListener("touchmove", function (e) {
+            if (e.target == canvas) {
+            e.preventDefault();
+            }
+            }, false);
+            }
+    
+            function color(obj) {
+            switch (obj.id) {
+                case "green":
+                    x = "green";
+                    break;
+                case "blue":
+                    x = "blue";
+                    break;
+                case "red":
+                    x = "red";
+                    break;
+                case "yellow":
+                    x = "yellow";
+                    break;
+                case "orange":
+                    x = "orange";
+                    break;
+                case "black":
+                    x = "black";
+                    break;
+                case "white":
+                    x = "white";
+                    break;
+            }
+            if (x == "white") y = 20;
+            else y = 10;
+    
+            }
+    
+            function draw() {
+    
+            ctx.strokeStyle = x;
+            ctx.arc(currX, currY, y, 20, Math.PI*2, true);
+            ctx.lineWidth = y;
+    
+    
+            // Set the line "cap" style to round, so lines at different angles can join into each other
+            ctx.lineCap = "round";
+            //ctx.lineJoin = "round";
+    
+    
+            // Draw a filled line
+            ctx.beginPath();
+    
+            // First, move to the old (previous) position
+            ctx.moveTo(prevX,prevY);
+    
+            // Now draw a line to the current touch/pointer position
+            ctx.lineTo(currX,currY);
+    
+            // Set the line thickness and draw the line
+            ctx.lineWidth = y;
+            ctx.stroke();
+    
+            ctx.closePath();
+    
+            // Update the last position to reference the current position
+            prevX=currX;
+            prevY=currY;
+            }
+    
+    
+    
+    
+    
+    
+            function findxy(res, e) {
+            if (res == 'down') {
+                prevX = currX;
+                prevY = currY;
+                currX = e.clientX - canvas.offsetLeft;
+                currY = e.clientY - canvas.offsetTop;
+    
+                flag = true;
+                dot_flag = true;
+                if (dot_flag) {
+                    ctx.beginPath();
+                    ctx.fillStyle = x;
+                    ctx.fillRect(currX, currY, 2, 2);
+                    ctx.closePath();
+                    dot_flag = false;
+                }
+            }
+            if (res == 'up' || res == "out") {
+                flag = false;
+            }
+            if (res == 'move') {
+                if (flag) {
+                    prevX = currX;
+                    prevY = currY;
+                    currX = e.clientX - canvas.offsetLeft;
+                    currY = e.clientY - canvas.offsetTop;
+                    draw();
+                }
+            }
+            }
+    
+            // Get the position of a touch relative to the canvas
+            function getTouchPos(canvasDom, touchEvent) {
+            var rect = canvasDom.getBoundingClientRect();
+            return {
+            x: touchEvent.touches[0].clientX - rect.left,
+            y: touchEvent.touches[0].clientY - rect.top
+            };
+            }
+        </script>
+        
+    <html>

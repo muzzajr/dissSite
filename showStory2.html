@@ -1,0 +1,42 @@
+<html>
+<head>
+    <link rel="stylesheet" href="homestyle.css">
+    <script src="java.js"></script>
+</head>
+<script>
+    function loadImage() {
+        var dataURL = localStorage.getItem("princess");
+        var img = document.getElementById("canvas1");
+        img.src = dataURL;
+        dataURL = localStorage.getItem("prince");
+        img = document.getElementById("canvas2");
+        img.src = dataURL;
+        dataURL = localStorage.getItem("meeting");
+        img = document.getElementById("canvas3");
+        img.src = dataURL;
+        dataURL = localStorage.getItem("wedding");
+        img = document.getElementById("canvas4");
+        img.src = dataURL;
+        dataURL = localStorage.getItem("ending");
+        img = document.getElementById("canvas5");
+        img.src = dataURL;
+    }
+</script>
+<body  onload="loadImage()">
+    <img id="canvas1" src="" width="400" height="300" style="position:absolute;top:3%;left:5%;border:2px solid;background:white;touch-action:none;">
+    <img id="canvas2" src="" width="400" height="300" style="position:absolute;top:3%;left:35%;border:2px solid;background:white;touch-action:none;">
+    <img id="canvas3" src="" width="400" height="300" style="position:absolute;top:3%;left:65%;border:2px solid;background:white;touch-action:none;">
+    <img id="canvas4" src="" width="400" height="300" style="position:absolute;top:53%;left:5%;border:2px solid;background:white;touch-action:none;">
+    <img id="canvas5" src="" width="400" height="300" style="position:absolute;top:53%;left:35%;border:2px solid;background:white;touch-action:none;">
+    <input type="button" onclick="goHome()" class="finshBtn" value="Finish" style="position:absolute;top:57%;left:64%;touch-action:none;">
+</body>
+<script>
+    function goHome(){
+        alert("Thank You for Trying My Project!");
+        window.location.href = "index.php";
+        localStorage.clear();
+
+    }
+</script>
+
+</html>
