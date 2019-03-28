@@ -71,7 +71,7 @@ input
 .finshBtn{
 	text-align: center;
 	width: 27% !important;
-	height: 30%;
+	height: 25%;
 	font-size: 4em;
 	-webkit-border-radius: 1vw;
 	-moz-border-radius: 1vw;
@@ -145,7 +145,7 @@ a .storyChoice:hover{
 	#btns
 	{
 		padding-top: 5vw;
-	    padding-bottom: 5vw;
+	  padding-bottom: 5vw;
 		margin-right: 1vw;
 		font-size:8vw;
 	}
