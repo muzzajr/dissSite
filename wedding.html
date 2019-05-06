@@ -14,7 +14,7 @@
             <div>
                 
             </div>
-            <canvas id="can" name="can" width="800%" height="500%" style="border-radius:2%;position:absolute;top:13%;left:2%;border:2px solid;background:white;touch-action:none;"></canvas>
+            <canvas id="can" name="can" width="800%" height="600%" style="border-radius:2%;position:absolute;top:13%;left:2%;border:2px solid;background:white;touch-action:none;"></canvas>
                 <div style="position:absolute;top:12%;left:70%;">Choose Color</div>
                 <div style="border-radius:25%;position:absolute;top:15%;left:70%;width:3vw;height:3vw;background:green;" id="green" onclick="color(this)"></div>
                 <div style="border-radius:25%;position:absolute;top:15%;left:74%;width:3vw;height:3vw;background:blue;" id="blue" onclick="color(this)"></div>
@@ -25,22 +25,18 @@
                 <div style="border-radius:25%;position:absolute;top:30%;left:70%;">Eraser</div>
                 <div style="border-radius:25%;position:absolute;top:33%;left:70%;width:3vw;height:3vw;background:white;border:2px solid;" id="white" onclick="color(this)"></div>
             
-            <input type="button" value="save" name="image" id="btn" onclick="saveViaAJAX()" size="30" style="position:absolute;top:55%;left:65%;width:10%;">
-            
-            <input type="button" value="clear" id="clr" size="23"  style="position:absolute;top:55%;left:76%;width:10%;">
-    
-            <form  name="myform" action="happyend.html">
-                <input type="submit" value="Next" id="clr" size="23" style="position:absolute;top:70%;left:76%;width:10%;">
-            </form>
+                <input type="button" value="Next" name="image" class="buttons" id="btn" onclick="save()" style="position:absolute;top:55%;left:70%;">
+        
+                <input type="button" value="Clear" class="buttons" id="clr"  style="position:absolute;top:61%;left:70%;">
     
         </body>
         <script>
             
-            function saveViaAJAX(){
+            function save(){
                     
-            var canvas = document.getElementById("can");
-            localStorage.setItem("wedding", canvas.toDataURL());
-    
+                var canvas = document.getElementById("can");
+                localStorage.setItem("wedding", canvas.toDataURL());
+                window.location.href = "happyend.html";
             }
     
             document.getElementById("clr").addEventListener("click", function() {

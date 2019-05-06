@@ -1,6 +1,7 @@
 <html>
 <head>
     <link rel="stylesheet" href="homestyle.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
     <script src="java.js"></script>
 </head>
 <script>
@@ -23,12 +24,17 @@
     }
 </script>
 <body  onload="loadImage()">
-    <img id="canvas1" src="" width="250" height="200" style="position:absolute;top:3%;left:5%;border:2px solid;background:white;touch-action:none;">
-    <img id="canvas2" src="" width="250" height="200" style="position:absolute;top:3%;left:35%;border:2px solid;background:white;touch-action:none;">
-    <img id="canvas3" src="" width="250" height="200" style="position:absolute;top:3%;left:65%;border:2px solid;background:white;touch-action:none;">
-    <img id="canvas4" src="" width="250" height="200" style="position:absolute;top:43%;left:5%;border:2px solid;background:white;touch-action:none;">
-    <img id="canvas5" src="" width="250" height="200" style="position:absolute;top:43%;left:35%;border:2px solid;background:white;touch-action:none;">
-    <input type="button" onclick="goHome()" class="finshBtn" value="Finish" style="position:absolute;top:40%;left:66%;touch-action:none;">
+    <img id="canvas1" src="" width="300" height="200" style="position:absolute;top:3%;left:5%;border:2px solid;background:white;touch-action:none;">
+    <input type="button" onclick="Download1()" class="finshBtn1" value="Download Picture" style="position:absolute;top:25%;left:5%;touch-action:none;">
+    <img id="canvas2" src="" width="300" height="200" style="position:absolute;top:3%;left:35%;border:2px solid;background:white;touch-action:none;">
+    <input type="button" onclick="Download2()" class="finshBtn1" value="Download Picture" style="position:absolute;top:25%;left:35%;touch-action:none;">
+    <img id="canvas3" src="" width="300" height="200" style="position:absolute;top:3%;left:65%;border:2px solid;background:white;touch-action:none;">
+    <input type="button" onclick="Download3()" class="finshBtn1" value="Download Picture" style="position:absolute;top:25%;left:65%;touch-action:none;">
+    <img id="canvas4" src="" width="300" height="200" style="position:absolute;top:50%;left:5%;border:2px solid;background:white;touch-action:none;">
+    <input type="button" onclick="Download4()" class="finshBtn1" value="Download Picture" style="position:absolute;top:72%;left:5%;touch-action:none;">
+    <img id="canvas5" src="" width="300" height="200" style="position:absolute;top:50%;left:35%;border:2px solid;background:white;touch-action:none;">
+    <input type="button" onclick="Download5()" class="finshBtn1" value="Download Picture" style="position:absolute;top:72%;left:35%;touch-action:none;">
+    <input type="button" onclick="goHome()" class="finshBtn" value="Finish" style="position:absolute;top:47%;left:64%;touch-action:none;">
 </body>
 <script>
     function goHome(){
@@ -36,6 +42,76 @@
         window.location.href = "index.html";
         localStorage.clear();
 
+    }
+    function Download1(){
+        var dataURL = localStorage.getItem("princess");
+        ImageSaver.download_data_uri(dataURL, "1 - Princess");
+        document.location.reload();
+    }
+    function Download2(){
+        var dataURL1 = localStorage.getItem("prince");
+        ImageSaver.download_data_uri(dataURL1, "2 - Prince");
+        document.location.reload();
+    }
+    function Download3(){
+        var dataURL2 = localStorage.getItem("meeting");
+        ImageSaver.download_data_uri(dataURL2, "3 - WhenTheyMet");
+        document.location.reload();
+    }
+    function Download4(){
+        var dataURL3 = localStorage.getItem("wedding");
+        ImageSaver.download_data_uri(dataURL3, "4 - Wedding");
+        document.location.reload();
+    }
+    function Download5(){
+        var dataURL3 = localStorage.getItem("ending");
+        ImageSaver.download_data_uri(dataURL3, "4 - The End");
+        document.location.reload();
+    }
+    ImageSaver = {
+        // function to force-download from a data uri as a filename
+        // nb the download="filename" attribute isn't yet supported by safari
+        download_data_uri: function(dataURI, fileName) {
+            var tempUrl = ImageSaver.make_url_from_data(dataURI);
+            var link = $('<a href="' + tempUrl + '" id="download" download="' + fileName + '" target="_blank"> </a>');
+            $("body").append(link);
+            $("#download").get(0).click();
+        },
+
+    // function to generate a temporary browser index url for a datauri
+    // if a data-uri is larger than 2mb, chrome's address bar can't handle it.
+    // fortunately, you can blob it and then use a temporary blob url
+        make_url_from_data: function(dataURI) {
+            var blob = ImageSaver.make_blob(dataURI);
+            var tempUrl = URL.createObjectURL(blob);
+            return tempUrl;
+        },
+
+    // function to convert a datauri to a blob
+    // Blobs are temporary data structures that can hold binary data, and make that data accessible through a short url. They can probably do other things too; I have no idea.
+        make_blob: function(dataURI) {
+            // convert base64 to raw binary data held in a string
+            // doesn't handle URLEncoded DataURIs
+            var byteString;
+            if (dataURI.split(',')[0].indexOf('base64') >= 0)
+            byteString = atob(dataURI.split(',')[1]);
+            else
+            byteString = unescape(dataURI.split(',')[1]);
+            // separate out the mime component
+            var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+
+            // write the bytes of the string to an ArrayBuffer
+            var ab = new ArrayBuffer(byteString.length);
+            var ia = new Uint8Array(ab);
+            for (var i = 0; i < byteString.length; i++) {
+            ia[i] = byteString.charCodeAt(i);
+            };
+
+            // write the ArrayBuffer to a blob, and you're done
+            return new Blob([ab], {
+            type: mimeString
+            });
+        }
     }
 </script>
 

@@ -71,7 +71,7 @@ input
 .finshBtn{
 	text-align: center;
 	width: 27% !important;
-	height: 25%;
+	height: 20%;
 	font-size: 4em;
 	-webkit-border-radius: 1vw;
 	-moz-border-radius: 1vw;
@@ -82,8 +82,22 @@ input
 	box-sizing:border-box;
 	background-color: 	#ccccff;
 }
+.finshBtn1{
+	text-align: center;
+	width: 15% !important;
+	height: 10%;
+	font-size: 2em;
+	-webkit-border-radius: 1vw;
+	-moz-border-radius: 1vw;
+	border-radius: 1vw;
+	border: none;
+	-moz-box-sizing:content-box;
+	-webkit-box-sizing:content-box; 
+	box-sizing:border-box;
+	background-color: 	#ccccff;
+}
 .finshBtn:hover{
-	border: solid 1vw black;
+	border: solid 0.2vw black;
 }
 #icons{
 	text-align: center;
@@ -145,7 +159,7 @@ a .storyChoice:hover{
 	#btns
 	{
 		padding-top: 5vw;
-	  padding-bottom: 5vw;
+	    padding-bottom: 5vw;
 		margin-right: 1vw;
 		font-size:8vw;
 	}
